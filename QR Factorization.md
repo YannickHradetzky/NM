@@ -77,3 +77,67 @@ q_{i}^{*}a_{j} & i<j \\
 \end{cases}
 $$
 
+# QR Factorization Summary
+
+Given a matrix $A \in \mathbb{R}^{m \times n}$ with linearly independent columns, the **QR factorization** decomposes $A$ into:
+$$
+A = QR,
+$$
+where:
+- $Q$ is an $m \times n$ matrix with orthonormal columns (obtained via the Gram-Schmidt process).
+- $R$ is an $n \times n$ upper triangular matrix with positive diagonal entries.
+
+---
+
+## **Steps to Compute QR Factorization**
+
+### 1. Gram-Schmidt Process:
+For each column $\mathbf{a}_i$ of $A$:
+1. Compute $\mathbf{v}_i = \mathbf{a}_i - \sum_{j=1}^{i-1} \text{proj}_{\mathbf{u}_j}(\mathbf{a}_i)$.
+2. Normalize $\mathbf{v}_i$ to obtain $\mathbf{u}_i = \frac{\mathbf{v}_i}{\|\mathbf{v}_i\|}$.
+
+This gives $Q = [\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n]$.
+
+### 2. Construct $R$:
+Two methods are available:
+- **Method 1 (Track Operations):** Build $R$ as the sequence of Gram-Schmidt operations "undoes" the transformations.
+- **Method 2 (Matrix Multiplication):** Use $R = Q^\top A$.
+
+---
+
+## **Example**
+
+For $A = \begin{bmatrix} -1 & 3 \\ 1 & 5 \end{bmatrix}$:
+
+### Compute $Q$:
+1. $\mathbf{v}_1 = \mathbf{a}_1 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$, $\mathbf{u}_1 = \frac{\mathbf{v}_1}{\|\mathbf{v}_1\|} = \frac{1}{\sqrt{2}} \begin{bmatrix} -1 \\ 1 \end{bmatrix}$.
+2. $\mathbf{v}_2 = \mathbf{a}_2 - \text{proj}_{\mathbf{u}_1}(\mathbf{a}_2) = \begin{bmatrix} 3 \\ 5 \end{bmatrix} - \begin{bmatrix} -1 \\ 1 \end{bmatrix} = \begin{bmatrix} 4 \\ 4 \end{bmatrix}$, $\mathbf{u}_2 = \frac{\mathbf{v}_2}{\|\mathbf{v}_2\|} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix}$.
+
+Thus:
+$$
+Q = \frac{1}{\sqrt{2}} \begin{bmatrix} -1 & 1 \\ 1 & 1 \end{bmatrix}.
+$$
+
+### Compute $R$:
+Using $R = Q^\top A$:
+$$
+R = \frac{1}{\sqrt{2}} \begin{bmatrix} -1 & 1 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} -1 & 3 \\ 1 & 5 \end{bmatrix} = \sqrt{2} \begin{bmatrix} 1 & 1 \\ 0 & 4 \end{bmatrix}.
+$$
+
+---
+
+## **General Formula for $R$**
+For $n=3$, $R$ is:
+$$
+R = \begin{bmatrix}
+\|\mathbf{v}_1\| & \langle \mathbf{u}_1, \mathbf{a}_2 \rangle & \langle \mathbf{u}_1, \mathbf{a}_3 \rangle \\
+0 & \|\mathbf{v}_2\| & \langle \mathbf{u}_2, \mathbf{a}_3 \rangle \\
+0 & 0 & \|\mathbf{v}_3\|
+\end{bmatrix}.
+$$
+
+Alternatively:
+$$
+R = Q^\top A.
+$$
+
