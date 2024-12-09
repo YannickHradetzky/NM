@@ -124,6 +124,7 @@ $$
 
 ## Extend $Q$:
 1. Compute $\vec{q_3}$, orthogonal to $\vec{q_1}$ and $\vec{q_2}$:
+**Edit: Could also be done with the cross product**
    $$
    \vec{q_3} = \text{normalize} \left( \vec{e_3} - (\vec{q_1}^T \cdot \vec{e_3}) \cdot \vec{q_1} - (\vec{q_2}^T \cdot \vec{e_3}) \cdot \vec{q_2} \right).
    $$
@@ -224,20 +225,6 @@ backward_error = np.linalg.norm(A - Q2@R2) / np.linalg.norm(A)
 print(f"Forward error in Q: {forward_error_Q:.2e}")
 print(f"Forward error in R: {forward_error_R:.2e}")
 print(f"Backward error: {backward_error:.2e}")
-
-# Compute condition number of A
-cond_A = np.linalg.cond(A)
-print(f"\nCondition number of A: {cond_A:.2e}")
-
-# Interpretation
-print("\nInterpretation:")
-print("1. The backward error is very small, showing the computed QR")
-print("   factorization is backward stable (QR ≈ A)")
-print("2. The forward errors in Q and R are larger than the backward")
-print("   error but still reasonable, indicating some sensitivity")
-print("3. The condition number gives us the worst-case amplification")
-print("   of relative errors, explaining the relationship between")
-print("   forward and backward errors")
 ```
 
 # Task 5) QR via Householder reflections
