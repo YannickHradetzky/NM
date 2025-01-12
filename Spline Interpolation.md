@@ -1,3 +1,4 @@
+[[Skript Numerics 1.pdf]]
 # Spline Interpolation
 
 Spline interpolation is a method of fitting a piecewise polynomial function to a set of data points. Unlike high-degree polynomial interpolation, splines provide a smooth approximation without the oscillatory behavior seen in [[Runge's Phenomenon]].

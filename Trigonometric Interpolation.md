@@ -1,3 +1,4 @@
+[[Skript Numerics 1.pdf]]
 A **real** trigonometric polynomial is a function $p: R\to R$ of the form: 
 $$
 p(x) = a_{0}+\sum_{k=1}^{N}a_{k}\cos kx + \sum_{k=1}^{N}b_{k}\sin kx
@@ -59,3 +60,5 @@ $$
 	- $b_{k}=i(c_{k}-c_{n-k})$
 	- $a_{N}=c_{N}$
 	- $b_{N}=0$
+
+
